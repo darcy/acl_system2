@@ -12,6 +12,7 @@ module Caboose
   class RoleHandler < AccessHandler 
     
     def check(key, context)  
+      return false unless context[:user].respond_to? "roles"
       context[:user].roles.map{ |role| role.title.downcase}.include? key.downcase
     end
         
